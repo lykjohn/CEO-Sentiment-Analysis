@@ -7,8 +7,8 @@ from random import sample
 import re
 import numpy as np
 
-os.chdir('./ceo_sentiment_final.csv' ) ## change this to where the parsed dataframe is stored
-    
+os.chdir( """ change this to where the parsed dataframe is stored   """) 
+
 df=pd.read_csv('sentiment_df.csv') ## change this if you stored the parsed sentiment file with a different name
 df=df.drop_duplicates(keep=False, inplace=False)
 
@@ -131,17 +131,5 @@ sentiment_df=sentiment_df.drop_duplicates(subset=['ticker_h','CIK','EIN','FY'])
 
 sentiment_df.to_csv('ceo_sentiment_final.csv',index=False)
 
-######################### Secondary Cleanup ####################
 
-os.chdir(""" Change to the directory where primarily cleaned data is stored""")
-sentiment_df=pd.read_csv(r'ceo_sentiment_final.csv')
-temp_df=pd.read_csv(r'ceo_temp.csv',encoding='ISO-8859-1')[['ticker_h','CIK','FY','CEO Names']]
-
-
-merged_ceo=pd.merge(sentiment_df,temp_df,how='left',on=['ticker_h','CIK','FY']).drop_duplicates(subset=['ticker_h','CIK','EIN','FY'])['CEO Names_y']
-sentiment_df['CEO Names']=merged_ceo.to_list()
-
-sentiment_df.to_csv('ceo_sentiment_final.csv',index=False)
-
-
-#[...manual cleanup...]
+#[...some manual cleanup needed...]
