@@ -247,7 +247,7 @@ sentiment_df=pd.DataFrame({'ticker_h':ticker,'CIK':cik,'IRS':ein,'FY':fiscal_yea
 
 # save mined data to a path
                
-companies.to_csv('sentiment_df.csv') ## change to the directory which you want to save the interpreted dataframe
+sentiment_df.to_csv('ceo_sentiment_final.csv') ## change to the directory which you want to save the interpreted dataframe
      
 
 
