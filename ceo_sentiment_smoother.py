@@ -7,7 +7,7 @@ from random import sample
 import re
 import numpy as np
 
-os.chdir(""" Change to directory where the parsed sentiment dataframe is stored""") ## change this
+os.chdir('./ceo_sentiment_final.csv' ) ## change this to where the parsed dataframe is stored
     
 df=pd.read_csv('sentiment_df.csv') ## change this if you stored the parsed sentiment file with a different name
 df=df.drop_duplicates(keep=False, inplace=False)
@@ -129,12 +129,12 @@ sentiment_df=pd.DataFrame({'ticker_h':df['ticker_h'].to_list(),'CIK':df['CIK'].t
         
 sentiment_df=sentiment_df.drop_duplicates(subset=['ticker_h','CIK','EIN','FY'])
 
-sentiment_df.to_csv('ceo_sentiment.csv',index=False)
+sentiment_df.to_csv('ceo_sentiment_final.csv',index=False)
 
 ######################### Secondary Cleanup ####################
 
-os.chdir(r'C:\Users\lykjo\OneDrive\Desktop\fundamentals-V01\data')
-sentiment_df=pd.read_csv(r'ceo_sentiment.csv')
+os.chdir(""" Change to the directory where primarily cleaned data is stored""")
+sentiment_df=pd.read_csv(r'ceo_sentiment_final.csv')
 temp_df=pd.read_csv(r'ceo_temp.csv',encoding='ISO-8859-1')[['ticker_h','CIK','FY','CEO Names']]
 
 
